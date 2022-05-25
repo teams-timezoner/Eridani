@@ -9,6 +9,10 @@ defmodule EridaniWeb.Router do
     pipe_through :api
 
     get "/timezones", TimezonesController, :index
+
+    resources "/users", UsersController, only: [:index, :show]
+
+    get "/users/timezone/:id", UsersController, :show_by_timezone
   end
 
   # Enables LiveDashboard only for development
