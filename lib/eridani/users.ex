@@ -12,4 +12,15 @@ defmodule Eridani.UsersService do
   ]
 
   def get_users(), do: @users
+
+  def get_user_by_id(id) do
+    @users
+      |> Enum.filter(fn user -> Map.get(user, :id) === id end)
+      |> List.first
+  end
+
+  def get_users_by_timezone(timezone) do
+    @users
+      |> Enum.filter(fn user -> Map.get(user, :timezone) === timezone end)
+  end
 end
