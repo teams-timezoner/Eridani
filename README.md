@@ -2,9 +2,11 @@
 
 To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+  * Install [docker](https://www.docker.com/)
+  * Run the following commands in your terminal:
+    * `docker-compose build` (to build the project image)
+    * `docker-compose run web mix ecto.setup` (to create and migrate the database)
+    * `docker-compose up` (to run the project)
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
