@@ -7,6 +7,8 @@ defmodule EridaniWeb.Router do
 
   scope "/api", EridaniWeb do
     pipe_through :api
+
+    get "/timezones", TimezonesController, :index
   end
 
   # Enables LiveDashboard only for development
