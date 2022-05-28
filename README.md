@@ -4,7 +4,6 @@ To start your Phoenix server:
 
   * Install [docker](https://www.docker.com/)
   * Run the following commands in your terminal:
-    * `docker-compose build` (to build the project image)
     * `docker-compose run web mix ecto.setup` (to create and migrate the database)
     * `docker-compose up` (to run the project)
 
