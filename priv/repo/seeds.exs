@@ -25,7 +25,7 @@ timezones = [
   %{name: "VST", description: "Vietnam Standard Time", offset: 7.0},
   %{name: "CTT", description: "China Taiwan Time", offset: 8.0},
   %{name: "JST", description: "Japan Standard Time", offset: 9.0},
-  %{name: "JST", description: "Australia Central Time", offset: 9.5},
+  %{name: "ACT", description: "Australia Central Time", offset: 9.5},
   %{name: "AET", description: "Australia Eastern Time", offset: 10.0},
   %{name: "SST", description: "Solomon Standard Time", offset: 11.0},
   %{name: "NST", description: "New Zealand Standard Time", offset: 12.0},
