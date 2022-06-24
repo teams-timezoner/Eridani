@@ -10,6 +10,7 @@ defmodule Eridani.Timezone do
     field :description, :string
     field :name, :string
     field :offset, :float
+    has_many :users, Eridani.User
 
     timestamps()
   end
