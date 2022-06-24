@@ -1,14 +1,4 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Eridani.Repo.insert!(%Eridani.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+import Ecto.Query
 
 timezones = [
   %{name: "GMT", description: "Greenwich Mean Time", offset: 0.0},
@@ -63,11 +53,21 @@ users = [
   %{ name: "Mateus", timezone: "BET" },
 ]
 
+query = from t in Eridani.Timezone,
+              select: %{
+                id: t.id,
+                name: t.name
+              }
+
+timezones = Eridani.Repo.all(query)
+            |> Enum.reduce(%{}, fn (timezone, acc) -> Map.put(acc, timezone.name, timezone.id) end)
+
+add_timezone_to_user = fn (timezone, user) -> Map.put(user, :timezone, timezone) end
+
 users
  |> Enum.map(fn user ->
-    id = Eridani.Repo.get_by!(Eridani.Timezone, name: user.timezone)
-      |> Map.get(:id)
-    %{user | timezone: id}
+      Map.get(timezones, user.timezone)
+        |> add_timezone_to_user.(user)
   end
 )
- |> Enum.each(fn user -> Eridani.Repo.insert!(%Eridani.User{ name: user.name, timezone: user.timezone }) end)
+ |> Enum.each(fn user -> Eridani.Repo.insert!(%Eridani.User{ name: user.name, timezone_id: user.timezone }) end)
